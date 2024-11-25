@@ -11,6 +11,7 @@ class DriverCreationForm(UserCreationForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
     email = forms.EmailField()
+    license_number = forms.CharField()
 
     class Meta(UserCreationForm.Meta):
         model = get_user_model()

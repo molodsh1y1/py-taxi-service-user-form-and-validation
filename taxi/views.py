@@ -87,7 +87,6 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class CarDriverManageView(LoginRequiredMixin, generic.View):
-
     @staticmethod
     def post(request: HttpRequest, pk: int):
         car = get_object_or_404(Car, pk=pk)
