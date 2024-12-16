@@ -87,15 +87,14 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 
 class CarDriverManageView(LoginRequiredMixin, generic.View):
-    @staticmethod
-    def post(request: HttpRequest, pk: int):
+    def post(self, request: HttpRequest, pk: int):
         car = get_object_or_404(Car, pk=pk)
 
         if car.drivers.filter(id=request.user.id).exists():
             car.drivers.remove(request.user)
         else:
             car.drivers.add(request.user)
-        return render(request, "taxi/car_detail.html", {"car": car})
+        return redirect("taxi:car-detail", pk=car.id)
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
